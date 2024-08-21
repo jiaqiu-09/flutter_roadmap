@@ -187,7 +187,6 @@ class _SQflitePageState extends State<SQflitePage> {
                       'value': valueController.text,
                     });
                   }
-2
                   updateList();
                   Navigator.of(context).pop();
                 }
