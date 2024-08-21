@@ -5,7 +5,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> list = ['WebSocket', 'GraphQL', 'SQflite'];
+    final List<String> list = ['WebSocket', 'GraphQL', 'SQflite', 'SharedPreferences'];
     return Scaffold(
       appBar: AppBar(
         title: Text('Home page'),
