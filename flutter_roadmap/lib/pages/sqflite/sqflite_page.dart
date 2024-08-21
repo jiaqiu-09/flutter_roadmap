@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_roadmap/pages/sqflite/sqflite_utils.dart';
@@ -77,6 +76,24 @@ class _SQflitePageState extends State<SQflitePage> {
                     leading: CircleAvatar(child: Text(item.id.toString())),
                     title: Text(item.name),
                     subtitle: Text('Value: ${item.value}'),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.edit),
+                          onPressed: () async {
+                            showFormDialog(context, item: item);
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () async {
+                            await deleteItem(db!, item.id);
+                            await updateList();
+                          },
+                        )
+                      ],
+                    ),
                   );
                 });
           } else {
@@ -104,9 +121,9 @@ class _SQflitePageState extends State<SQflitePage> {
     });
   }
 
-  void showFormDialog(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController valueController = TextEditingController();
+  void showFormDialog(BuildContext context, {DataItem? item}) {
+    final TextEditingController nameController = TextEditingController(text: item?.name);
+    final TextEditingController valueController = TextEditingController(text: item?.value);
 
     showDialog(
       context: context,
@@ -155,16 +172,22 @@ class _SQflitePageState extends State<SQflitePage> {
             TextButton(
               child: const Text('Submit'),
               onPressed: () async {
-                // Here you can process the form data
-                print('Field 2: ${nameController.text}');
-                print('Field 3: ${valueController.text}');
                 if (_formKey.currentState?.validate() == true) {
                   db ??= await openDB();
-                  await insertItem(db!, {
-                    'id': Random().nextInt(1000000),
-                    'name': nameController.text,
-                    'value': valueController.text,
-                  });
+                  if (item?.id != null) {
+                    await updateItem(db!, {
+                      'id': item!.id,
+                      'name': nameController.text,
+                      'value': valueController.text,
+                    });
+                  } else {
+                    await insertItem(db!, {
+                      'id': items.length + 1,
+                      'name': nameController.text,
+                      'value': valueController.text,
+                    });
+                  }
+2
                   updateList();
                   Navigator.of(context).pop();
                 }
