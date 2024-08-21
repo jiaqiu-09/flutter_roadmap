@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_roadmap/pages/graphql_page.dart';
 import 'package:flutter_roadmap/pages/home_page.dart';
+import 'package:flutter_roadmap/pages/sqflite/sqflite_page.dart';
+import 'package:flutter_roadmap/pages/websocket_page.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'blocs/app_env/app_env_cubit.dart';
@@ -8,7 +11,7 @@ import 'blocs/app_env/app_env_cubit.dart';
 void main() async {
   await initHiveForFlutter();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -36,11 +39,30 @@ class MyApp extends StatelessWidget {
                 useMaterial3: true,
               ),
               home: const HomePage(),
+              routes: getRoutes(context),
             );
           }
           return const MaterialApp(home: SizedBox.shrink());
         },
       ),
     );
+  }
+
+  Map<String, WidgetBuilder> getRoutes(BuildContext context) {
+    return <String, WidgetBuilder>{
+      '': (BuildContext context) => const HomePage(),
+      '/websocket': (BuildContext context) => const WebsocketPage(),
+      '/sqflite': (BuildContext context) => const SQflitePage(),
+      '/graphql': (BuildContext context) => BlocBuilder<AppEnvCubit, AppEnvState>(builder: (context, state) {
+            if (state is AppEnvLoadSuccess) {
+              return GraphQLPage(
+                url: state.gitConfig.url,
+                token: state.gitConfig.token,
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
+          }),
+    };
   }
 }
