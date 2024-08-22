@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_roadmap/pages/graphql_page.dart';
 import 'package:flutter_roadmap/pages/home_page.dart';
+import 'package:flutter_roadmap/pages/isolate_page.dart';
 import 'package:flutter_roadmap/pages/shared_preferences/local_storage.dart';
 import 'package:flutter_roadmap/pages/shared_preferences/shared_preferences_page.dart';
 import 'package:flutter_roadmap/pages/sqflite/sqflite_page.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
       '/websocket': (BuildContext context) => const WebsocketPage(),
       '/sqflite': (BuildContext context) => const SQflitePage(),
       '/sharedpreferences': (BuildContext context) => const SharedPreferencesPage(),
+      '/isolate': (BuildContext context) => const IsolatePage(),
       '/graphql': (BuildContext context) => BlocBuilder<AppEnvCubit, AppEnvState>(builder: (context, state) {
             if (state is AppEnvLoadSuccess) {
               return GraphQLPage(
