@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_roadmap/pages/graphql_page.dart';
 import 'package:flutter_roadmap/pages/home_page.dart';
-import 'package:flutter_roadmap/pages/shared_preferences_page.dart';
+import 'package:flutter_roadmap/pages/shared_preferences/local_storage.dart';
+import 'package:flutter_roadmap/pages/shared_preferences/shared_preferences_page.dart';
 import 'package:flutter_roadmap/pages/sqflite/sqflite_page.dart';
 import 'package:flutter_roadmap/pages/websocket_page.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -11,6 +12,7 @@ import 'blocs/app_env/app_env_cubit.dart';
 
 void main() async {
   await initHiveForFlutter();
+  await LocalStorage().init();
 
   runApp(const MyApp());
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_roadmap/pages/shared_preferences/local_storage.dart';
 
 class SharedPreferencesPage extends StatefulWidget {
   const SharedPreferencesPage({super.key});
@@ -20,13 +20,9 @@ class _SharedPreferencesPageState extends State<SharedPreferencesPage> {
   }
 
   Future<void> loadData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final data = prefs.getString(storeKey);
-    if (data != null) {
-      setState(() {
-        savedString = data;
-      });
-    }
+    setState(() {
+      savedString = LocalStorage().getString(storeKey) ?? '';
+    });
   }
 
   @override
@@ -41,22 +37,20 @@ class _SharedPreferencesPageState extends State<SharedPreferencesPage> {
           Text('text from Shared Preferences: $savedString'),
           TextButton(
               onPressed: () async {
-                final SharedPreferences prefs = await SharedPreferences.getInstance();
-                await prefs.setString(storeKey, 'updated');
+                final saved = await LocalStorage().saveString(storeKey, 'updated');
                 setState(() {
-                  savedString = 'updated';
+                  savedString = saved == true ? 'updated' : '';
                 });
               },
               child: Text('update')),
           TextButton(
               onPressed: () async {
-                final SharedPreferences prefs = await SharedPreferences.getInstance();
-                await prefs.remove(storeKey);
+                final removed = await LocalStorage().remove(storeKey);
                 setState(() {
-                  savedString = '';
+                  savedString = removed == true ? '' : 'remove failed';
                 });
               },
-              child: Text('delete')),
+              child: Text('remove')),
         ],
       ),
     );
