@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_roadmap/pages/state_management/bloc/counter_cubit.dart';
+import 'package:flutter_roadmap/pages/state_management/bloc_widget.dart';
 import 'package:flutter_roadmap/pages/state_management/change_notifier_widget.dart';
 import 'package:flutter_roadmap/pages/state_management/redux/redux_widget.dart';
+import 'package:flutter_roadmap/pages/state_management/river_pod_widget.dart';
 import 'package:flutter_roadmap/pages/state_management/value_notifier_widget.dart';
 
 class Item {
@@ -17,10 +22,14 @@ class StateManagementPage extends StatelessWidget {
     List<Item> data = [
       const Item(title: 'ChangeNotifier', widget: ChangeNotifierWidget()),
       const Item(title: 'ValueNotifier', widget: ValueNotifierWidget()),
-      const Item(
-        title: 'Redux',
-        widget: ReduxWidget(),
-      )
+      const Item(title: 'Redux', widget: ReduxWidget()),
+      const Item(title: 'RiverPod', widget: ProviderScope(child: RiverPodWidget())),
+      Item(
+          title: 'Bloc',
+          widget: BlocProvider(
+            create: (context) => CounterCubit(initialValue: 100),
+            child: const BlocWidget(),
+          ))
     ];
     return Scaffold(
       appBar: AppBar(
