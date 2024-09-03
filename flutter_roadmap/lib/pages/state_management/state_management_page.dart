@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_roadmap/pages/state_management/bloc/counter_cubit.dart';
 import 'package:flutter_roadmap/pages/state_management/bloc_widget.dart';
 import 'package:flutter_roadmap/pages/state_management/change_notifier_widget.dart';
+import 'package:flutter_roadmap/pages/state_management/provider_widget.dart';
 import 'package:flutter_roadmap/pages/state_management/redux/redux_widget.dart';
 import 'package:flutter_roadmap/pages/state_management/river_pod_widget.dart';
 import 'package:flutter_roadmap/pages/state_management/value_notifier_widget.dart';
@@ -24,6 +25,10 @@ class StateManagementPage extends StatelessWidget {
       const Item(title: 'ValueNotifier', widget: ValueNotifierWidget()),
       const Item(title: 'Redux', widget: ReduxWidget()),
       const Item(title: 'RiverPod', widget: ProviderScope(child: RiverPodWidget())),
+      const Item(
+        title: 'Provider',
+        widget: ProviderWidget(),
+      ),
       Item(
           title: 'Bloc',
           widget: BlocProvider(
