@@ -12,7 +12,8 @@ class HomePage extends StatelessWidget {
       'SharedPreferences',
       'Isolate',
       'Stream',
-      'StateManagement'
+      'StateManagement',
+      'Animation'
     ];
     return Scaffold(
       appBar: AppBar(

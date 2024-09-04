@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_roadmap/pages/animations/animation_page.dart';
 import 'package:flutter_roadmap/pages/graphql_page.dart';
 import 'package:flutter_roadmap/pages/home_page.dart';
 import 'package:flutter_roadmap/pages/isolate_page.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
       '/isolate': (BuildContext context) => const IsolatePage(),
       '/stream': (BuildContext context) => const StreamPage(),
       '/statemanagement': (BuildContext context) => const StateManagementPage(),
+      '/animation': (BuildContext context) => const AnimationPage(),
       '/graphql': (BuildContext context) => BlocBuilder<AppEnvCubit, AppEnvState>(builder: (context, state) {
             if (state is AppEnvLoadSuccess) {
               return GraphQLPage(
