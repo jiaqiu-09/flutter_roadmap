@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_roadmap/pages/state_management/bloc/counter_cubit.dart';
 import 'package:flutter_roadmap/pages/state_management/bloc_widget.dart';
 import 'package:flutter_roadmap/pages/state_management/change_notifier_widget.dart';
+import 'package:flutter_roadmap/pages/state_management/custom_bloc_widget.dart';
 import 'package:flutter_roadmap/pages/state_management/getX_normal_widget.dart';
 import 'package:flutter_roadmap/pages/state_management/getX_simple_widget.dart';
 import 'package:flutter_roadmap/pages/state_management/provider_widget.dart';
@@ -39,6 +40,7 @@ class StateManagementPage extends StatelessWidget {
           )),
       Item(title: 'GetX simple', widget: GetXSimpleWidget()),
       Item(title: 'GetX normal', widget: GetXNormalWidget()),
+      const Item(title: 'Custom bloc', widget: CustomBlocWidget()),
     ];
     return Scaffold(
       appBar: AppBar(
