@@ -32,7 +32,17 @@ class _AnimatedLogoWidgetState extends State<AnimatedLogoWidget> with SingleTick
   void initState() {
     super.initState();
     controller = AnimationController(duration: const Duration(seconds: 2), vsync: this);
-    animation = Tween<double>(begin: 0, end: 300).animate(controller);
+    animation = Tween<double>(begin: 100, end: 300).animate(controller)
+      ..addStatusListener((status) {
+        print('animation status $status');
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          controller.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          controller.forward();
+        }
+      });
     controller.forward();
   }
 
