@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_roadmap/pages/animations/animation_builder_demo.dart';
 import 'package:flutter_roadmap/pages/animations/tween_widget.dart';
 
 import '../state_management/state_management_page.dart';
@@ -11,7 +12,8 @@ class AnimationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Item> data = [
       const Item(title: 'Tween', widget: TweenWidget()),
-      const Item(title: 'Animated Logo', widget: AnimatedLogoWidget()),
+      const Item(title: 'Animated Logo and listener', widget: AnimatedLogoWidget()),
+      const Item(title: 'Animated Builder Demo', widget: AnimationBuilderDemo()),
     ];
     return Scaffold(
       appBar: AppBar(
