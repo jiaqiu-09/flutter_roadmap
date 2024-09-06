@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_roadmap/pages/animations/ScaleAnimationDemo.dart';
+import 'package:flutter_roadmap/pages/animations/animated_button_widget.dart';
 import 'package:flutter_roadmap/pages/animations/animation_builder_demo.dart';
 import 'package:flutter_roadmap/pages/animations/tween_widget.dart';
 
@@ -16,6 +17,7 @@ class AnimationPage extends StatelessWidget {
       const Item(title: 'Animated Logo and listener', widget: AnimatedLogoWidget()),
       const Item(title: 'Animated Builder Demo', widget: AnimationBuilderDemo()),
       const Item(title: 'Curve Animation', widget: ScaleAnimationDemo()),
+      const Item(title: 'Animated Button', widget: AnimatedButtonWidget()),
     ];
     return Scaffold(
       appBar: AppBar(
