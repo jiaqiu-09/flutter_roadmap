@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_roadmap/pages/animations/ScaleAnimationDemo.dart';
 import 'package:flutter_roadmap/pages/animations/animated_button_widget.dart';
 import 'package:flutter_roadmap/pages/animations/animation_builder_demo.dart';
+import 'package:flutter_roadmap/pages/animations/hero_animation_page.dart';
 import 'package:flutter_roadmap/pages/animations/tween_widget.dart';
 
 import '../state_management/state_management_page.dart';
@@ -18,6 +19,7 @@ class AnimationPage extends StatelessWidget {
       const Item(title: 'Animated Builder Demo', widget: AnimationBuilderDemo()),
       const Item(title: 'Curve Animation', widget: ScaleAnimationDemo()),
       const Item(title: 'Animated Button', widget: AnimatedButtonWidget()),
+      const Item(title: 'Hero Animation', widget: HeroAnimation()),
     ];
     return Scaffold(
       appBar: AppBar(
